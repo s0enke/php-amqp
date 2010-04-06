@@ -1,3 +1,5 @@
+. Remove strcpy and replace with safe alternative.
+    * Check for INI_STR buffer overflows.
 . Fix php_st_error_handling deprecation
 . Fix parameter parsing (see PECL email)
 . Rewrite test cases using phpt
