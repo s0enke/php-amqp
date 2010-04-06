@@ -93,37 +93,115 @@ typedef struct _amqp_exchange_object {
     int name_len;
 } amqp_exchange_object;
 
+
+/* amqp_class ARG_INFO definition */
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_class__construct, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+    ZEND_ARG_ARRAY_INFO(0, credentials, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_class_isConnected, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+ZEND_END_ARG_INFO()
+
+/* amqp_queue_class ARG_INFO definition */
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class__construct, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, amqp_connection)
+    ZEND_ARG_INFO(0, queue_name)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_declare, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, queue_name)
+    ZEND_ARG_INFO(0, flags)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_delete, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, queue_name)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_purge, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, queue_name)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_bind, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, exchange_name)
+    ZEND_ARG_INFO(0, routing_key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_unbind, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, exchange_name)
+    ZEND_ARG_INFO(0, routing_key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_consume, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, num_messages)
+    ZEND_ARG_INFO(0, flags)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_get, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, flags)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_queue_class_cancel, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, consumer_tag)
+ZEND_END_ARG_INFO()
+
+/* amqp_exchange ARG_INFO definition */
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_exchange_class__construct, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, amqp_connection)
+    ZEND_ARG_INFO(0, queue_name)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_exchange_class_declare, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+    ZEND_ARG_INFO(0, exchange_name)
+    ZEND_ARG_INFO(0, exchange_type)
+    ZEND_ARG_INFO(0, flags)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_exchange_class_bind, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
+    ZEND_ARG_INFO(0, queue_name)
+    ZEND_ARG_INFO(0, routing_key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_exchange_class_delete, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+    ZEND_ARG_INFO(0, queue_name)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_amqp_exchange_class_publish, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 2)
+    ZEND_ARG_INFO(0, message)
+    ZEND_ARG_INFO(0, routing_key)
+ZEND_END_ARG_INFO()
+
+
 /* {{{ amqp_functions[]
 *
 *Every user visible function must have an entry in amqp_functions[].
 */
 zend_function_entry amqp_class_functions[] = {
-    PHP_ME(amqp_class, __construct, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_class, isConnected, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_class, __construct, arginfo_amqp_class__construct,  ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_class, isConnected, arginfo_amqp_class_isConnected, ZEND_ACC_PUBLIC)
     {NULL, NULL, NULL}    /* Must be the last line in amqp_functions[] */
 };
 
 zend_function_entry amqp_queue_class_functions[] = {
-    PHP_ME(amqp_queue_class, __construct,   NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, declare,       NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, delete,        NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, purge,         NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, bind,          NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, unbind,        NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, consume,       NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_queue_class, get,           NULL, ZEND_ACC_PUBLIC)    
-    PHP_ME(amqp_queue_class, cancel,        NULL, ZEND_ACC_PUBLIC)    
+    PHP_ME(amqp_queue_class, __construct,   arginfo_amqp_queue_class__construct,    ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, declare,       arginfo_amqp_queue_class_declare,       ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, delete,        arginfo_amqp_queue_class_delete,        ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, purge,         arginfo_amqp_queue_class_purge,         ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, bind,          arginfo_amqp_queue_class_bind,          ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, unbind,        arginfo_amqp_queue_class_unbind,        ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, consume,       arginfo_amqp_queue_class_consume,       ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_queue_class, get,           arginfo_amqp_queue_class_get,           ZEND_ACC_PUBLIC)    
+    PHP_ME(amqp_queue_class, cancel,        arginfo_amqp_queue_class_cancel,        ZEND_ACC_PUBLIC)    
 
     {NULL, NULL, NULL}    /* Must be the last line in amqp_functions[] */
 };
 
 
 zend_function_entry amqp_exchange_class_functions[] = {
-    PHP_ME(amqp_exchange_class, __construct,    NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_exchange_class, declare,        NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_exchange_class, bind,           NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_exchange_class, delete,         NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(amqp_exchange_class, publish,        NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_exchange_class, __construct,    arginfo_amqp_exchange_class__construct, ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_exchange_class, declare,        arginfo_amqp_exchange_class_declare,    ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_exchange_class, bind,           arginfo_amqp_exchange_class_bind,       ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_exchange_class, delete,         arginfo_amqp_exchange_class_delete,     ZEND_ACC_PUBLIC)
+    PHP_ME(amqp_exchange_class, publish,        arginfo_amqp_exchange_class_publish,    ZEND_ACC_PUBLIC)
 
     /* PHP_ME(amqp_queue_class, unbind,         NULL, ZEND_ACC_PUBLIC) */
 
@@ -1705,7 +1783,7 @@ PHP_MINIT_FUNCTION(amqp)
 {
     zend_class_entry ce;
 
-    INIT_CLASS_ENTRY(ce, "AMQPConnect", amqp_class_functions);
+    INIT_CLASS_ENTRY(ce, "AMQPConnection", amqp_class_functions);
     ce.create_object = amqp_ctor;
     amqp_class_entry = zend_register_internal_class(&ce TSRMLS_CC);
 

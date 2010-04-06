@@ -1,5 +1,7 @@
 . Fix php_st_error_handling deprecation
 . Fix parameter parsing (see PECL email)
-. Add ZEND_ARG_INFO for Reflection class support
-. Rewrite test cases using PHPUnit
+. Rewrite test cases using phpt
 . Add non-busy wait consumption
+
+
+DONE. Add ZEND_ARG_INFO for Reflection class support
