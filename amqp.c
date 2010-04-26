@@ -1337,13 +1337,7 @@ PHP_METHOD(amqp_queue_class, ack)
                 &s);
 
     if (res) {
-        char str[256];
-        char ** pstr =  (char **) &str;
-        char *p = str;
-
-        spprintf( &p, 0, "Ack errror; code=%d", res); 
-        cnn->is_connected = 0;
-        zend_throw_exception(amqp_queue_exception_class_entry, *pstr  ,0 TSRMLS_CC);
+        zend_throw_exception_ex(amqp_queue_exception_class_entry, 0 TSRMLS_CC, "Ack error; code=%d", res);
         return;
     }
 
