@@ -35,12 +35,12 @@ extern zend_module_entry amqp_module_entry;
 #include "TSRM.h"
 #endif
 
-#define AMQP_NOPARM		1
+#define AMQP_NOPARM		    1
 
 #define AMQP_DURABLE		2
 #define AMQP_PASSIVE		4
 #define AMQP_EXCLUSIVE		8
-#define AMQP_AUTODELETE	16
+#define AMQP_AUTODELETE	    16
 #define AMQP_INTERNAL		32
 #define AMQP_NOLOCAL		64
 #define AMQP_NOACK			128
