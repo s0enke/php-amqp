@@ -40,17 +40,17 @@
 
 #include <unistd.h>
 
-#define FRAME_MAX			   131072  /* max length (size) of frame */
-#define HEADER_FOOTER_SIZE	  8	   /*  7 bytes up front, then payload, then 1 byte footer */
+#define FRAME_MAX				131072  /* max length (size) of frame */
+#define HEADER_FOOTER_SIZE		8	   /*  7 bytes up front, then payload, then 1 byte footer */
 #define PORT					5672	/* default AMQP port */
 #define PORT_STR				"5672"
 #define AMQP_CHANNEL			1	   /* default channal number */
-#define AMQP_HEARBEAT		   0	   /* hearbeat */
+#define AMQP_HEARBEAT			0	   /* hearbeat */
 
-#define AMQP_NULLARGS		   amqp_table_t arguments = {0, NULL};
-#define AMQP_PASSIVE_D		  short passive = (AMQP_PASSIVE & parms) ? 1 : 0;
-#define AMQP_DURABLE_D		  short durable = (AMQP_DURABLE & parms) ? 1 : 0;
-#define AMQP_AUTODELETE_D	   short auto_delete = (AMQP_AUTODELETE & parms) ? 1 : 0;
+#define AMQP_NULLARGS			amqp_table_t arguments = {0, NULL};
+#define AMQP_PASSIVE_D			short passive = (AMQP_PASSIVE & parms) ? 1 : 0;
+#define AMQP_DURABLE_D			short durable = (AMQP_DURABLE & parms) ? 1 : 0;
+#define AMQP_AUTODELETE_D		short auto_delete = (AMQP_AUTODELETE & parms) ? 1 : 0;
 #define AMQP_EXCLUSIVE_D		short exclusive = (AMQP_EXCLUSIVE & parms) ? 1 : 0;
 
 #define AMQP_SET_NAME(ctx, str) (ctx)->name_len = strlen(str) >= sizeof((ctx)->name) ? sizeof((ctx)->name) - 1 : strlen(str); \
@@ -190,16 +190,16 @@ zend_function_entry amqp_class_functions[] = {
 };
 
 zend_function_entry amqp_queue_class_functions[] = {
-	PHP_ME(amqp_queue_class, __construct,   arginfo_amqp_queue_class__construct,	ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, declare,	   arginfo_amqp_queue_class_declare,	   ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, __construct,	arginfo_amqp_queue_class__construct,	ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, declare,		arginfo_amqp_queue_class_declare,		ZEND_ACC_PUBLIC)
 	PHP_ME(amqp_queue_class, delete,		arginfo_amqp_queue_class_delete,		ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, purge,		 arginfo_amqp_queue_class_purge,		 ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, bind,		  arginfo_amqp_queue_class_bind,		  ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, purge,			arginfo_amqp_queue_class_purge,			ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, bind,			arginfo_amqp_queue_class_bind,			ZEND_ACC_PUBLIC)
 	PHP_ME(amqp_queue_class, unbind,		arginfo_amqp_queue_class_unbind,		ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, consume,	   arginfo_amqp_queue_class_consume,	   ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, get,		   arginfo_amqp_queue_class_get,		   ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, consume,		arginfo_amqp_queue_class_consume,		ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, get,			arginfo_amqp_queue_class_get,			ZEND_ACC_PUBLIC)
 	PHP_ME(amqp_queue_class, cancel,		arginfo_amqp_queue_class_cancel,		ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_queue_class, ack,		   arginfo_amqp_queue_class_ack,		   ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_queue_class, ack,			arginfo_amqp_queue_class_ack,			ZEND_ACC_PUBLIC)
 	
 	{NULL, NULL, NULL}	/* Must be the last line in amqp_functions[] */
 };
@@ -208,8 +208,8 @@ zend_function_entry amqp_queue_class_functions[] = {
 zend_function_entry amqp_exchange_class_functions[] = {
 	PHP_ME(amqp_exchange_class, __construct,	arginfo_amqp_exchange_class__construct, ZEND_ACC_PUBLIC)
 	PHP_ME(amqp_exchange_class, declare,		arginfo_amqp_exchange_class_declare,	ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_exchange_class, bind,		   arginfo_amqp_exchange_class_bind,	   ZEND_ACC_PUBLIC)
-	PHP_ME(amqp_exchange_class, delete,		 arginfo_amqp_exchange_class_delete,	 ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_exchange_class, bind,			arginfo_amqp_exchange_class_bind,		ZEND_ACC_PUBLIC)
+	PHP_ME(amqp_exchange_class, delete,			arginfo_amqp_exchange_class_delete,		ZEND_ACC_PUBLIC)
 	PHP_ME(amqp_exchange_class, publish,		arginfo_amqp_exchange_class_publish,	ZEND_ACC_PUBLIC)
 
 	/* PHP_ME(amqp_queue_class, unbind,		 NULL, ZEND_ACC_PUBLIC) */
@@ -1408,8 +1408,8 @@ PHP_METHOD(amqp_exchange_class, declare)
 	char *name;
 	int name_len = 0;
 	char *type;
-	int type_len=0;
-	long parms =0;
+	int type_len = 0;
+	long parms = 0;
 
 	amqp_rpc_reply_t res;
 	amqp_exchange_declare_t s;
