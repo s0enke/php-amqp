@@ -46,7 +46,7 @@
 #define HEADER_FOOTER_SIZE		8	   /*  7 bytes up front, then payload, then 1 byte footer */
 #define PORT					5672	/* default AMQP port */
 #define PORT_STR				"5672"
-#define AMQP_CHANNEL			1	   /* default channal number */
+#define AMQP_CHANNEL			1	   /* default channel number */
 #define AMQP_HEARBEAT			0	   /* hearbeat */
 
 #define AMQP_NULLARGS			amqp_table_t arguments = {0, NULL};
@@ -453,7 +453,7 @@ PHP_METHOD(amqp_class, isConnected)
 	/* Get the connection object out of the store */
 	ctx = (amqp_object *)zend_object_store_get_object(id TSRMLS_CC);
 
-	/* If the channal_connect is 1, we have a connection */
+	/* If the channel_connect is 1, we have a connection */
 	if (ctx->is_channel_connected == '\1') {
 		RETURN_TRUE;
 	}
