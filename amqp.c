@@ -478,8 +478,6 @@ PHP_METHOD(amqp_queue_class, __construct)
 	char *name = NULL;
 	int name_len = 0;
 
-
-
 	if (zend_parse_method_parameters(ZEND_NUM_ARGS() TSRMLS_CC, getThis(), "Oo|s",
 	&id, amqp_queue_class_entry, &cnnOb, &name, &name_len) == FAILURE) {
 		RETURN_FALSE;
