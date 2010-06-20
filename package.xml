@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
+<package version="1.0" packagerversion="1.9.0">
+ <name>amqp</name>
+ <summary>Communicate with any AMQP compliant server</summary>
+ <description>This extension can communicate with any AMQP spec 0-9-1 compatible server, such as RabbitMQ, OpenAMQP and Qpid, giving you the ability to create and delete exchanges and queues, as well as publish to any exchange and consume from any queue.
+ </description>
+ <maintainers>
+  <maintainer>
+   <user>pdezwart</user>
+   <name>Pieter de Zwart</name>
+   <email>pdezwart@php.net</email>
+   <role>lead</role>
+  </maintainer>
+  </maintainers>
+ <release>
+  <version>0.1.0</version>
+  <date>2010-06-19</date>
+  <license>PHP License</license>
+  <state>beta</state>
+  <notes>- #48763, ZipArchive produces corrupted archive (dani dot church at gmail dot com)
+- Fixed regression in the overwrite mode
+- Fixed binary mode with FCGI on Windows
+  </notes>
+  <deps>
+   <dep type="php" rel="ge" version="4.3.0"/>
+  </deps>
+  <filelist>
+   <file role="src" name="amqp.c"/>
+   <file role="src" name="config.m4"/>
+   <file role="doc" name="CREDITS"/>
+   <file role="src" name="php_amqp.h"/>
+  </filelist>
+ </release>
+</package>
