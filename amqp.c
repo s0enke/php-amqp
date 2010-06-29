@@ -1793,15 +1793,15 @@ PHP_METHOD(amqp_exchange_class, bind)
 
 	amqp_queue_bind_t s;
 	s.ticket				= 0;
-	s.queue.len			 = queue_name_len;
-	s.queue.bytes		   = queue_name;
-	s.exchange.len		  = ctx->name_len;
+	s.queue.len				= queue_name_len;
+	s.queue.bytes			= queue_name;
+	s.exchange.len			= ctx->name_len;
 	s.exchange.bytes		= ctx->name;
-	s.routing_key.len	   = keyname_len;
-	s.routing_key.bytes	 = keyname;
+	s.routing_key.len		= keyname_len;
+	s.routing_key.bytes		= keyname;
 	s.nowait				= 0;
 	s.arguments.num_entries = 0;
-	s.arguments.entries	 = NULL;
+	s.arguments.entries		= NULL;
 
 	amqp_method_number_t method_ok = AMQP_QUEUE_BIND_OK_METHOD;
 	result = amqp_simple_rpc(cnn->conn,

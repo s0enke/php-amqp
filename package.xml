@@ -18,9 +18,7 @@
   <date>2010-06-19</date>
   <license>PHP License</license>
   <state>beta</state>
-  <notes>- #48763, ZipArchive produces corrupted archive (dani dot church at gmail dot com)
-- Fixed regression in the overwrite mode
-- Fixed binary mode with FCGI on Windows
+  <notes>- Initial release
   </notes>
   <deps>
    <dep type="php" rel="ge" version="4.3.0"/>
